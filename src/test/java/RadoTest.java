@@ -2,14 +2,14 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class RadoTest {
-    //покрытие 100 по бранчам, обрушать не надо
+
     @Test
     public void shouleSetRadioStation() {
-        Radio radio = new Radio();
+        Radio radio = new Radio(9);
 
-        radio.setCurrentRadioStation(6);
+        radio.setCurrentRadioStation(4);
 
-        int expected = 6;
+        int expected = 4;
         int actual = radio.getCurrentRadioStation();
 
         Assertions.assertEquals(expected, actual);
@@ -129,9 +129,9 @@ public class RadoTest {
     public void shouldSetToMaxVolume() {
         Radio radio = new Radio();
 
-        radio.setCurrentVolume(10);
+        radio.setCurrentVolume(100);
 
-        int expected = 10;
+        int expected = 100;
         int actual = radio.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
@@ -162,7 +162,7 @@ public class RadoTest {
     @Test
     public void shouldVolumeOutOfRangeMax() {
         Radio radio = new Radio();
-        radio.setCurrentVolume(11);
+        radio.setCurrentVolume(101);
 
         int expected = 0;
         int actual = radio.getCurrentVolume();
@@ -173,10 +173,10 @@ public class RadoTest {
     @Test
     public void increaseMaxVolume() {
         Radio radio = new Radio();
-        radio.setCurrentVolume(10);
+        radio.setCurrentVolume(100);
         radio.increaseVolume();
 
-        int expected = 10;
+        int expected = 100;
         int actual = radio.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
@@ -197,10 +197,10 @@ public class RadoTest {
     @Test
     public void decreaseMaxVolume() {
         Radio radio = new Radio();
-        radio.setCurrentVolume(10);
+        radio.setCurrentVolume(100);
         radio.decreaseVolume();
 
-        int expected = 9;
+        int expected = 99;
         int actual = radio.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
