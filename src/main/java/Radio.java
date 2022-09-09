@@ -9,59 +9,60 @@ import lombok.NoArgsConstructor;
 public class Radio {
     private int currentRadioStation;
     private int currentVolume;
-    private int maxStation = 9;
-    private int minStation = 0;
-    private int maxVolume = 100;
-    private int minVolume = 0;
+//    private int maxStation = 9;
+//    private int minStation = 0;
+//    private int maxVolume = 100;
+//    private int minVolume = 0;
+
 
     public void setCurrentRadioStation(int currentRadioStation) {
-        if (currentRadioStation > maxStation) {
-            this.currentRadioStation = maxStation;
+        if (currentRadioStation > 9) {
+            this.currentRadioStation = 9;
             return;
         }
-        if (currentRadioStation < minStation) {
-            this.currentRadioStation = minStation;
+        if (currentRadioStation < 0) {
+            this.currentRadioStation = 0;
             return;
         }
         this.currentRadioStation = currentRadioStation;
     }
 
     public void nextRadioStation() {
-        if (currentRadioStation == maxStation) {
-            currentRadioStation = minStation;
+        if (currentRadioStation == 9) {
+            currentRadioStation = 0;
             return;
         }
         currentRadioStation++;
     }
 
     public void prevRadioStation() {
-        if (currentRadioStation == minStation) {
-            currentRadioStation = maxStation;
+        if (currentRadioStation == 0) {
+            currentRadioStation = 9;
             return;
         }
         currentRadioStation--;
     }
 
     public void setCurrentVolume(int currentVolume) {
-        if (currentVolume > maxVolume) {
-            this.currentVolume = maxVolume;
+        if (currentVolume > 100) {
+            this.currentVolume = 100;
             return;
         }
-        if (currentVolume < minVolume) {
-            this.currentVolume = minVolume;
+        if (currentVolume < 0) {
+            this.currentVolume = 0;
             return;
         }
         this.currentVolume = currentVolume;
     }
 
     public void increaseVolume() {
-        if (currentVolume < maxVolume) {
+        if (currentVolume < 100) {
             currentVolume++;
         }
     }
 
     public void decreaseVolume() {
-        if (currentVolume > minVolume) {
+        if (currentVolume > 0) {
             currentVolume--;
         }
     }
