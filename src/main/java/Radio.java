@@ -1,74 +1,64 @@
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+//@NoArgsConstructor
+@AllArgsConstructor
+@Data
+
 public class Radio {
+    private int currentRadioStation;
+    private int currentVolume;
 
-    public int currentRadioStation;    //номер текущей радиостанции
-    public int currentVolume;   //громкость звука
-
-    public int getCurrentRadioStation() {
-
-        return currentRadioStation;
-    }
-
-    public int getCurrentVolume() {
-
-        return currentVolume;
-    }
-
-    public void setCurrentRadioStation(int newCurrentRadioStation) {
-        if (newCurrentRadioStation < 0) {
+    public void setCurrentRadioStation(int currentRadioStation) {
+        if (currentRadioStation > 9) {
+            this.currentRadioStation = 9;
             return;
         }
-        if (newCurrentRadioStation > 9) {
+        if (currentRadioStation < 0) {
+            this.currentRadioStation = 0;
             return;
         }
-        currentRadioStation = newCurrentRadioStation;
-    }
-
-    public void setCurrentVolume(int newCurrentVolume) {
-        if (newCurrentVolume < 0) {
-            return;
-        }
-        if (newCurrentVolume > 10) {
-            return;
-        }
-        currentVolume = newCurrentVolume;
+        this.currentRadioStation = currentRadioStation;
     }
 
     public void nextRadioStation() {
-        if (currentRadioStation >= 9) {
+        if (currentRadioStation == 9) {
             currentRadioStation = 0;
-        } else {
-            currentRadioStation = currentRadioStation + 1;
+            return;
         }
+        currentRadioStation++;
     }
 
     public void prevRadioStation() {
-        if (currentRadioStation <= 0) {
+        if (currentRadioStation == 0) {
             currentRadioStation = 9;
-        } else {
-            currentRadioStation = currentRadioStation - 1;
+            return;
         }
+        currentRadioStation--;
     }
-//
-//    public void increaseRadioStation() {
-//    int target = currentRadioStation +1;
-//    setCurrentRadioStation(target);
-//    }
-//
-//    public void decreaseRadioStation() {
-//    int target = currentRadioStation -1;
-//    setCurrentRadioStation(target);
-//    }
 
-    //увеличение громкости от 0 до 10
+    public void setCurrentVolume(int currentVolume) {
+        if (currentVolume > 100) {
+            this.currentVolume = 100;
+            return;
+        }
+        if (currentVolume < 0) {
+            this.currentVolume = 0;
+            return;
+        }
+        this.currentVolume = currentVolume;
+    }
+
     public void increaseVolume() {
-        if (currentVolume < 10) {
-            currentVolume = currentVolume + 1;
+        if (currentVolume < 100) {
+            currentVolume++;
         }
     }
 
     public void decreaseVolume() {
         if (currentVolume > 0) {
-            currentVolume = currentVolume - 1;
+            currentVolume--;
         }
     }
 }
