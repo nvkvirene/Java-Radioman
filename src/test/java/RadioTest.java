@@ -83,7 +83,7 @@ public class RadioTest {
     }
 
     @Test
-    public void shouldVolumeOutOfRange() {
+    public void shouldVolumeOutOfRangeMin() {
         radio.setCurrentVolume(-1);
         Assertions.assertEquals(0, radio.getCurrentVolume());
     }
@@ -102,6 +102,13 @@ public class RadioTest {
     }
 
     @Test
+    public void increaseMaxLimitVolume() {
+        radio.setCurrentVolume(101);
+        radio.increaseVolume();
+        Assertions.assertEquals(100, radio.getCurrentVolume());
+    }
+
+    @Test
     public void increaseMinVolume() {
         radio.setCurrentVolume(0);
         radio.increaseVolume();
@@ -113,6 +120,13 @@ public class RadioTest {
         radio.setCurrentVolume(100);
         radio.decreaseVolume();
         Assertions.assertEquals(99, radio.getCurrentVolume());
+    }
+
+    @Test
+    public void decreaseMaxLimitVolume() {
+        radio.setCurrentVolume(-1);
+        radio.decreaseVolume();
+        Assertions.assertEquals(0, radio.getCurrentVolume());
     }
 
     @Test
